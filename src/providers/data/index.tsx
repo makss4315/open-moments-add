@@ -2,6 +2,7 @@ import graphqlDataProvider, {GraphQLClient, liveProvider as graphqlLiveProvider}
 import {fetchWrapper} from "./fetch-wrapper";
 import {createClient} from 'graphql-ws'
 
+
 export const API_BASE_URL = 'https://api.crm.refine.dev';
 export const API_URL = `${API_BASE_URL}/graphql`;
 export const WS_URL = 'wss://api.crm.refine.dev/graphql'
