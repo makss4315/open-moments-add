@@ -16,12 +16,17 @@ import { App as AntdApp } from "antd";
 import {BrowserRouter, Outlet, Route, Routes} from "react-router-dom";
 import Layout from "./components/layout";
 import List from "@/pages/tasks/list";
+import React from "react";
+
+import {resources} from "@/config/resources";
+import CreateTask from "./pages/tasks/create";
+import EditTask from "./pages/tasks/edit"   ;
 
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
+
       <RefineKbarProvider>
           <AntdApp>
             <DevtoolsProvider>
@@ -31,6 +36,7 @@ function App() {
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
+               resources={resources}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
@@ -55,10 +61,16 @@ function App() {
                         </Authenticated>
                         }>
                         <Route index element={<Home />} />
-                        <Route path="/tasks">
-                            <Route index element={<List/>}/>
-
+                        <Route path="/tasks" element={
+                            <List>
+                                <Outlet />
+                        </List>
+                        }>
+                            <Route path='TasksCreatePage' element={<CreateTask/>}/>
+                            <Route path='edit/:id' element={<EditTask/>}/>
                         </Route>
+
+
                     </Route>
                 </Routes>
                 <RefineKbar />
